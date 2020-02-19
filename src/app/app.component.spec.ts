@@ -20,6 +20,6 @@ describe('AppComponent', () => {
   it(`should have as title 'ng-basis'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-basis');
+    expect(app.title).toEqual('MobTimer');
   });
 });
