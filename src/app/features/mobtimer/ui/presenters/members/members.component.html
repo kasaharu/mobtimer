@@ -1,1 +1,13 @@
-<p>members works!</p>
+<div class="label">Members</div>
+
+<div class="member-list">
+  <div class="member-label" *ngFor="let member of members">
+    <div>{{ member }}</div>
+    <button class="delete-button">x</button>
+  </div>
+</div>
+
+<form [formGroup]="newMember">
+  <input type="text" formControlName="name" />
+  <button type="submit" (click)="clickAddButton()">追加</button>
+</form>

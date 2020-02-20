@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-members',
@@ -7,10 +8,15 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MembersComponent implements OnInit {
+  constructor() {}
+  newMember = new FormGroup({
+    name: new FormControl(''),
+  });
 
-  constructor() { }
+  @Input() members: string[] = [];
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  clickAddButton() {
+    console.log('click add button');
   }
-
 }

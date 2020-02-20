@@ -1,3 +1,14 @@
 .mob-timer {
+  display: flex;
+  width: 100%;
   padding: 24px;
+  box-sizing: border-box;
+}
+
+.mob-timer-item-timer {
+  flex-grow: 1;
+}
+
+.mob-timer-item-members {
+  flex-grow: 6;
 }

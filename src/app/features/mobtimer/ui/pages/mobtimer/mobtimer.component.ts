@@ -7,10 +7,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobtimerComponent implements OnInit {
+  constructor() {}
+  members: string[] = ['test', 'test2', 'test3'];
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

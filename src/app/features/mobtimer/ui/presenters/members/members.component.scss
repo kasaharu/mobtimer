@@ -1,0 +1,22 @@
+.label {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.member-list {
+  display: flex;
+}
+
+.member-label {
+  display: flex;
+  height: 32px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #bbbbbb;
+  box-sizing: border-box;
+}
+
+.delete-button {
+  text-align: center;
+  border: none;
+}
