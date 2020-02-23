@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,11 +9,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class TimerComponent implements OnInit {
   constructor() {}
-  time = new FormControl(10);
+  @Input()
+  mobTime!: number;
+
+  time = new FormControl();
   timer = new FormGroup({ time: this.time });
 
   ngOnInit(): void {
-    this.time.setValue(10);
+    this.time.setValue(this.mobTime);
   }
 
   clickButton() {
