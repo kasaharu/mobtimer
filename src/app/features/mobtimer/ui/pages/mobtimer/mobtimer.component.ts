@@ -13,4 +13,8 @@ export class MobtimerComponent implements OnInit {
   members: string[] = ['test', 'test2', 'test3'];
 
   ngOnInit(): void {}
+
+  changeTime(time: number) {
+    console.log(time);
+  }
 }

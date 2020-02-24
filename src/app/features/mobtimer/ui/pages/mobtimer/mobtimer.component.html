@@ -1,4 +1,4 @@
 <div *ngIf="mobtimer$ | async as mobtimer" class="mob-timer">
-  <app-timer [mobTime]="mobtimer.mobTime" class="mob-timer-item-timer"></app-timer>
+  <app-timer [mobTime]="mobtimer.mobTime" (changeTime)="changeTime($event)" class="mob-timer-item-timer"></app-timer>
   <app-members [members]="mobtimer.mobMembers" class="mob-timer-item-members"></app-members>
 </div>
