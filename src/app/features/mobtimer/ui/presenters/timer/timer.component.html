@@ -1,10 +1,6 @@
-<div>{{ time.value }}</div>
-
 <form [formGroup]="timer">
   <label class="timer-label" for="">
     Minutes:
     <input class="input" type="number" formControlName="time" />
   </label>
 </form>
-
-<button class="setting-time-button" (click)="clickButton()">check</button>
