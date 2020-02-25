@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class MembersComponent implements OnInit {
   constructor() {}
+  @Output()
+  addMember = new EventEmitter();
+
   newMember = new FormGroup({
     name: new FormControl(''),
   });
@@ -17,6 +20,7 @@ export class MembersComponent implements OnInit {
 
   ngOnInit(): void {}
   clickAddButton() {
-    console.log('click add button');
+    this.addMember.emit(this.newMember.value.name);
+    this.newMember.reset();
   }
 }

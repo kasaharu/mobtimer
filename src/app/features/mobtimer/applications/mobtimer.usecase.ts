@@ -19,4 +19,9 @@ export class MobtimerUsecase {
     this.store$.dispatch(actions.saveMobTime({ mobTime: minutes }));
     this.repository.saveTime(minutes);
   }
+
+  addMember(name: string) {
+    this.store$.dispatch(actions.saveMobMember({ mobMember: name }));
+    this.repository.saveMember(name);
+  }
 }

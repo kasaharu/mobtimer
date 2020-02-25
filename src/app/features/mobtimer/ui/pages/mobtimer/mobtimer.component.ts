@@ -21,4 +21,8 @@ export class MobtimerComponent implements OnInit {
   changeTime(time: number) {
     this.usecase.changeTime(time);
   }
+
+  addMember(name: string) {
+    this.usecase.addMember(name);
+  }
 }
