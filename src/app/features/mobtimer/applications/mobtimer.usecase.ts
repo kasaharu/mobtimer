@@ -11,7 +11,8 @@ export class MobtimerUsecase {
 
   initialize() {
     const mobTime = this.repository.getTime();
-    this.store$.dispatch(actions.saveMobTime({ mobTime }));
+    const mobMembers = this.repository.getMembers();
+    this.store$.dispatch(actions.setMobTimer({ mobTime, mobMembers }));
   }
 
   changeTime(minutes: number) {

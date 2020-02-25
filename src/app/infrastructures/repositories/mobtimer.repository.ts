@@ -15,4 +15,17 @@ export class MobtimerRepository {
     const minutes = localStorage.getItem(`${this.storagePrefix}/minutes`);
     return minutes ? Number(minutes) : 0;
   }
+
+  saveMember(member: string) {
+    const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
+    const savedMembers = savedMembersString ? JSON.parse(savedMembersString) : [];
+    const newMembers = [member].concat(savedMembers);
+
+    localStorage.setItem(`${this.storagePrefix}/members`, JSON.stringify(newMembers));
+  }
+
+  getMembers(): any {
+    const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
+    return savedMembersString ? JSON.parse(savedMembersString) : [];
+  }
 }
