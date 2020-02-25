@@ -19,6 +19,6 @@ export class MobtimerComponent implements OnInit {
   }
 
   changeTime(time: number) {
-    console.log(time);
+    this.usecase.changeTime(time);
   }
 }
