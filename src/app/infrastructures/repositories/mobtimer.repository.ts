@@ -24,7 +24,7 @@ export class MobtimerRepository {
     localStorage.setItem(`${this.storagePrefix}/members`, JSON.stringify(newMembers));
   }
 
-  getMembers(): any {
+  getMembers(): string[] {
     const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
     return savedMembersString ? JSON.parse(savedMembersString) : [];
   }
