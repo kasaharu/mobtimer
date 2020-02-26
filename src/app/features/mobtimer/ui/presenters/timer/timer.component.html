@@ -2,7 +2,7 @@
 
 <form [formGroup]="timer">
   <label class="timer-label" for="">
-    <input class="input" type="number" formControlName="time" />
+    <input class="input" type="number" min="1" formControlName="time" />
     (Minutes)
   </label>
 </form>
