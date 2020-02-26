@@ -1,6 +1,6 @@
-<div *ngIf="mobtimer$ | async as mobtimer" class="mob-timer">
-  <app-timer [mobTime]="mobtimer.mobTime" (changeTime)="changeTime($event)" class="mob-timer-item-timer"></app-timer>
-  <app-members [members]="mobtimer.mobMembers" (addMember)="addMember($event)" class="mob-timer-item-members"></app-members>
+<div class="mob-timer">
+  <app-timer [mobTime]="mobTime$ | async" (changeTime)="changeTime($event)" class="mob-timer-item-timer"></app-timer>
+  <app-members [members]="mobMembers$ | async" (addMember)="addMember($event)" class="mob-timer-item-members"></app-members>
 </div>
 <div class="mobbing">
   <div class="counter" *ngIf="time$ | async as time; else defaultCount">

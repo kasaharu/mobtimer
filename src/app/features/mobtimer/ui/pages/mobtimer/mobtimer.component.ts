@@ -15,8 +15,8 @@ export class MobtimerComponent implements OnInit {
   time$ = new BehaviorSubject<number>(0);
   intervalId: number | null = null;
 
-  readonly mobtimer$ = this.query.mobtimer$;
-  members: string[] = ['test', 'test2', 'test3'];
+  readonly mobTime$ = this.query.mobTime$;
+  readonly mobMembers$ = this.query.mobMembers$;
 
   ngOnInit(): void {
     this.usecase.initialize();
