@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { MobMember } from '../../../domain/mobbing/mob-member.vo';
 import { MobTime } from '../../../domain/mobbing/mob-time.vo';
