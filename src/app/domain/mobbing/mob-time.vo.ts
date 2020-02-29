@@ -7,6 +7,8 @@ export class MobTime implements MobTimeProps {
     this._count = count;
   }
 
+  static minimumTime = 1;
+
   // tslint:disable-next-line: variable-name
   private _count: number;
 
@@ -15,7 +17,7 @@ export class MobTime implements MobTimeProps {
   }
 
   static create(count: number): MobTime {
-    if (!Number.isInteger(count) || count <= 0) {
+    if (!Number.isInteger(count) || count < MobTime.minimumTime) {
       throw new Error('must be greater than 0');
     }
 

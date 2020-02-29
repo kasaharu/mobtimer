@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MobTime } from '../../domain/mobbing/mob-time.vo';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class MobtimerRepository {
 
   getTime(): number {
     const minutes = localStorage.getItem(`${this.storagePrefix}/minutes`);
-    return minutes ? Number(minutes) : 0;
+    return minutes ? Number(minutes) : MobTime.minimumTime;
   }
 
   saveMember(member: string) {
