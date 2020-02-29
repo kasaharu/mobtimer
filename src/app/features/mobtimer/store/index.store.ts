@@ -24,7 +24,7 @@ export const saveMobTime = createAction('[MobTimer] save mobTime', props<{ mobTi
 export const saveMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMember }>());
 export const startMobbing = createAction('[MobTimer] start mobbing');
 export const stopMobbing = createAction('[MobTimer] stop mobbing');
-export const setCountdownValue = createAction('[MobTimer] save mobMember', props<{ countdownValue: number }>());
+export const setCountdownValue = createAction('[MobTimer] set countdown value', props<{ countdownValue: number }>());
 
 export const actions = { setMobbing, saveMobTime, saveMobMember, startMobbing, stopMobbing, setCountdownValue };
 const actionsUnion = union(actions);
