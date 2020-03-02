@@ -10,6 +10,6 @@ export class MobMemberService {
   static exists(name: string) {
     const repo = new MobtimerRepository();
     const members = repo.getMembers();
-    return members.includes(name);
+    return members.map((member) => member.name).includes(name);
   }
 }

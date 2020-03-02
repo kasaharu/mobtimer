@@ -14,23 +14,21 @@ export class MobtimerUsecase {
   intervalId: number | null = null;
 
   initialize() {
-    const time = this.repository.getTime();
-    const members = this.repository.getMembers();
-    const mobTime = MobTime.create(time);
-    const mobMembers = members.map((member) => MobMember.create(member));
+    const mobTime = this.repository.getTime();
+    const mobMembers = this.repository.getMembers();
     this.store$.dispatch(actions.setMobbing({ mobTime, mobMembers }));
   }
 
   changeTime(minutes: number) {
     const mobTime = MobTime.create(minutes);
     this.store$.dispatch(actions.saveMobTime({ mobTime }));
-    this.repository.saveTime(minutes);
+    this.repository.saveTime(mobTime);
   }
 
   addMember(name: string) {
     const mobMember = MobMember.create(name);
     this.store$.dispatch(actions.saveMobMember({ mobMember }));
-    this.repository.saveMember(name);
+    this.repository.saveMember(mobMember);
   }
 
   startMobbing() {
