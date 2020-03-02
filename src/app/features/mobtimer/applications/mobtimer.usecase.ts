@@ -48,7 +48,7 @@ export class MobtimerUsecase {
     this.intervalId = window.setInterval(() => {
       this.store$.dispatch(actions.setCountdownValue({ countdownValue: times-- }));
       if (times < 0) {
-        this.stopCountDown();
+        this.store$.dispatch(actions.stopMobbing());
       }
     }, 1000);
   }
@@ -59,6 +59,5 @@ export class MobtimerUsecase {
     }
 
     this.intervalId = null;
-    this.store$.dispatch(actions.stopMobbing());
   }
 }

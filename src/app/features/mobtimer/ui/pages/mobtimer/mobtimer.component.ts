@@ -37,6 +37,6 @@ export class MobtimerComponent implements OnInit {
   }
 
   startMobbing() {
-    this.usecase.startCountdown();
+    this.usecase.startMobbing();
   }
 }
