@@ -1,3 +1,5 @@
+import { MobMemberService } from './mob-member.service';
+
 interface MobMemberProps {
   name: string;
 }
@@ -17,6 +19,10 @@ export class MobMember implements MobMemberProps {
   static create(name: string): MobMember {
     if (!name) {
       throw new Error('not allow empty');
+    }
+
+    if (MobMemberService.exists(name)) {
+      throw new Error(`${name} exists already`);
     }
 
     return new MobMember(name);
