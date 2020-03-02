@@ -7,5 +7,5 @@
     <div>{{ time }}</div>
   </div>
   <ng-template class="counter" #defaultCount>00:00</ng-template>
-  <button class="start-button" (click)="startMobbing()">Start Mobbing</button>
+  <button class="start-button" [disabled]="!(readyMobbing$ | async)" (click)="startMobbing()">Start Mobbing</button>
 </div>

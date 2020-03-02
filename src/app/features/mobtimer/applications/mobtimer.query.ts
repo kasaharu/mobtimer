@@ -13,4 +13,5 @@ export class MobtimerQuery {
   readonly mobMembers$ = selectStore(this.store$, (state) => state.mobMembers.map((member) => member.name));
   readonly isMobbing$ = selectStore(this.store$, (state) => state.isMobbing);
   readonly countdownValue$ = selectStore(this.store$, (state) => state.countdownValue);
+  readonly readyMobbing$ = selectStore(this.store$, (state) => state.mobTime.count > 0 && state.mobMembers.length > 0);
 }
