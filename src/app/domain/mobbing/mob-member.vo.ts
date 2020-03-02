@@ -6,15 +6,10 @@ interface MobMemberProps {
 
 export class MobMember implements MobMemberProps {
   private constructor(name: string) {
-    this._name = name;
+    this.name = name;
   }
 
-  // tslint:disable-next-line: variable-name
-  private _name: string;
-
-  get name(): string {
-    return this._name;
-  }
+  readonly name: string;
 
   static create(name: string): MobMember {
     if (!name) {
