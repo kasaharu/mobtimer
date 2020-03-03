@@ -10,7 +10,7 @@ export class MobtimerRepository {
   readonly storagePrefix = 'kasaharu/mobtimer';
 
   saveTime(minutes: MobTime) {
-    localStorage.setItem(`${this.storagePrefix}/minutes`, minutes.toString());
+    localStorage.setItem(`${this.storagePrefix}/minutes`, JSON.stringify(minutes));
   }
 
   getTime(): MobTime {
