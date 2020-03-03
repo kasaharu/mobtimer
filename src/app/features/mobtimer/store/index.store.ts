@@ -8,14 +8,14 @@ export interface State {
   mobTime: MobTime;
   mobMembers: MobMember[];
   isMobbing: boolean;
-  countdownValue: number;
+  countdownSeconds: number;
 }
 
 export const initialState: State = {
   mobTime: MobTime.create(1),
   mobMembers: [],
   isMobbing: false,
-  countdownValue: 0,
+  countdownSeconds: 0,
 };
 
 // NOTE: Actions
@@ -24,20 +24,20 @@ export const saveMobTime = createAction('[MobTimer] save mobTime', props<{ mobTi
 export const saveMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMember }>());
 export const startMobbing = createAction('[MobTimer] start mobbing');
 export const stopMobbing = createAction('[MobTimer] stop mobbing');
-export const setCountdownValue = createAction('[MobTimer] set countdown value', props<{ countdownValue: number }>());
+export const setCountdownSeconds = createAction('[MobTimer] set countdown seconds', props<{ countdownSeconds: number }>());
 
-export const actions = { setMobbing, saveMobTime, saveMobMember, startMobbing, stopMobbing, setCountdownValue };
+export const actions = { setMobbing, saveMobTime, saveMobMember, startMobbing, stopMobbing, setCountdownSeconds };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
 const mobTimerReducer = createReducer(
   initialState,
-  on(setMobbing, (_, { mobTime, mobMembers }) => ({ mobTime, mobMembers, isMobbing: false, countdownValue: 0 })),
+  on(setMobbing, (_, { mobTime, mobMembers }) => ({ mobTime, mobMembers, isMobbing: false, countdownSeconds: 0 })),
   on(saveMobTime, (state, { mobTime }) => ({ ...state, mobTime })),
   on(saveMobMember, (state, { mobMember }) => ({ ...state, mobMembers: [...state.mobMembers, mobMember] })),
   on(startMobbing, (state) => ({ ...state, isMobbing: true })),
   on(stopMobbing, (state) => ({ ...state, isMobbing: false })),
-  on(setCountdownValue, (state, { countdownValue }) => ({ ...state, countdownValue })),
+  on(setCountdownSeconds, (state, { countdownSeconds }) => ({ ...state, countdownSeconds })),
 );
 
 export default function reducer(state: State, action: typeof actionsUnion): State {

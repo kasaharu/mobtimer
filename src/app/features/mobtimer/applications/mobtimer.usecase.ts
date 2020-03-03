@@ -46,7 +46,7 @@ export class MobtimerUsecase {
     let seconds = mobTimes * 60;
 
     this.intervalId = window.setInterval(() => {
-      this.store$.dispatch(actions.setCountdownValue({ countdownValue: seconds-- }));
+      this.store$.dispatch(actions.setCountdownSeconds({ countdownSeconds: seconds-- }));
       if (seconds < 0) {
         this.store$.dispatch(actions.stopMobbing());
       }
