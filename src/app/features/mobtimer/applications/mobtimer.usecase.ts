@@ -39,13 +39,15 @@ export class MobtimerUsecase {
     if (this.intervalId !== null) {
       return;
     }
-    let times = await selectStore(this.store$, (state) => state.mobTime.count)
+
+    const mobTimes = await selectStore(this.store$, (state) => state.mobTime.count)
       .pipe(take(1))
       .toPromise();
+    let seconds = mobTimes * 60;
 
     this.intervalId = window.setInterval(() => {
-      this.store$.dispatch(actions.setCountdownValue({ countdownValue: times-- }));
-      if (times < 0) {
+      this.store$.dispatch(actions.setCountdownValue({ countdownValue: seconds-- }));
+      if (seconds < 0) {
         this.store$.dispatch(actions.stopMobbing());
       }
     }, 1000);
