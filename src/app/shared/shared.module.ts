@@ -6,6 +6,6 @@ import { DisplayingTimePipe } from './ui/pipes/displaying-time.pipe';
 @NgModule({
   declarations: [HeaderComponent, DisplayingTimePipe],
   imports: [CommonModule],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, DisplayingTimePipe],
 })
 export class SharedModule {}
