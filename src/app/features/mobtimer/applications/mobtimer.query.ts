@@ -12,6 +12,16 @@ export class MobtimerQuery {
   });
   readonly mobMembers$ = selectStore(this.store$, (state) => state.mobMembers.map((member) => member.name));
   readonly isMobbing$ = selectStore(this.store$, (state) => state.isMobbing);
-  readonly countdownValue$ = selectStore(this.store$, (state) => state.countdownValue);
+  readonly countdownValue$ = selectStore(this.store$, (state) => {
+    // NOTE: countdownValue を 分/秒 に分解:
+    if (state.countdownValue === 0) {
+      return { minutes: 0, seconds: 0 };
+    }
+
+    const seconds = state.countdownValue % 60;
+    const minutes = (state.countdownValue - seconds) / 60;
+
+    return { minutes, seconds };
+  });
   readonly readyMobbing$ = selectStore(this.store$, (state) => state.mobTime.count > 0 && state.mobMembers.length > 0);
 }
