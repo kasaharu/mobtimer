@@ -11,6 +11,8 @@ export class MembersComponent implements OnInit {
   constructor() {}
   @Output()
   addMember = new EventEmitter();
+  @Output()
+  deleteMember = new EventEmitter();
 
   newMember = new FormGroup({
     name: new FormControl(''),
@@ -22,5 +24,9 @@ export class MembersComponent implements OnInit {
   clickAddButton() {
     this.addMember.emit(this.newMember.value.name);
     this.newMember.reset();
+  }
+
+  clickDeleteButton(name: string) {
+    this.deleteMember.emit(name);
   }
 }

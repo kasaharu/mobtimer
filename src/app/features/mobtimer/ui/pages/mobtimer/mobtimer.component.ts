@@ -36,6 +36,10 @@ export class MobtimerComponent implements OnInit {
     this.usecase.addMember(name);
   }
 
+  deleteMember(name: string) {
+    this.usecase.deleteMember(name);
+  }
+
   startMobbing() {
     this.usecase.startMobbing();
   }

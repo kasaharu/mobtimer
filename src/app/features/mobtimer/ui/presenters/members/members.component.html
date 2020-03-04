@@ -8,6 +8,6 @@
 <div class="member-list">
   <div class="member-label" *ngFor="let member of members">
     <div>{{ member }}</div>
-    <button class="delete-button">x</button>
+    <button class="delete-button" (click)="clickDeleteButton(member)">x</button>
   </div>
 </div>
