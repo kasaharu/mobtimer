@@ -26,6 +26,14 @@ export class MobtimerRepository {
     localStorage.setItem(`${this.storagePrefix}/members`, JSON.stringify(newMembers));
   }
 
+  deleteMember(targetMemberName: string) {
+    const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
+    const savedMembers: MobMember[] = savedMembersString ? JSON.parse(savedMembersString) : [];
+    const newMembers = savedMembers.filter((member) => member.name !== targetMemberName);
+
+    localStorage.setItem(`${this.storagePrefix}/members`, JSON.stringify(newMembers));
+  }
+
   getMembers(): MobMember[] {
     const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
     return savedMembersString ? (JSON.parse(savedMembersString) as MobMember[]) : [];

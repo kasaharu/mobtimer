@@ -31,6 +31,11 @@ export class MobtimerUsecase {
     this.repository.saveMember(mobMember);
   }
 
+  deleteMember(name: string) {
+    this.store$.dispatch(actions.deleteMobMember({ memberName: name }));
+    this.repository.deleteMember(name);
+  }
+
   startMobbing() {
     this.store$.dispatch(actions.startMobbing());
   }
