@@ -19,13 +19,13 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const setMobbing = createAction('[MobTimer] set mobbing', props<{ mobTime: MobTime; mobMembers: MobMember[] }>());
-export const saveMobTime = createAction('[MobTimer] save mobTime', props<{ mobTime: MobTime }>());
-export const saveMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMember }>());
-export const deleteMobMember = createAction('[MobTimer] delete mobMember', props<{ memberName: string }>());
-export const startMobbing = createAction('[MobTimer] start mobbing');
-export const stopMobbing = createAction('[MobTimer] stop mobbing');
-export const setCountdownSeconds = createAction('[MobTimer] set countdown seconds', props<{ countdownSeconds: number }>());
+const setMobbing = createAction('[MobTimer] set mobbing', props<{ mobTime: MobTime; mobMembers: MobMember[] }>());
+const saveMobTime = createAction('[MobTimer] save mobTime', props<{ mobTime: MobTime }>());
+const saveMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMember }>());
+const deleteMobMember = createAction('[MobTimer] delete mobMember', props<{ memberName: string }>());
+const startMobbing = createAction('[MobTimer] start mobbing');
+const stopMobbing = createAction('[MobTimer] stop mobbing');
+const setCountdownSeconds = createAction('[MobTimer] set countdown seconds', props<{ countdownSeconds: number }>());
 
 export const actions = { setMobbing, saveMobTime, saveMobMember, deleteMobMember, startMobbing, stopMobbing, setCountdownSeconds };
 const actionsUnion = union(actions);
