@@ -1,4 +1,4 @@
-interface MobTimeProps {
+export interface MobTimeProps {
   count: number;
 }
 

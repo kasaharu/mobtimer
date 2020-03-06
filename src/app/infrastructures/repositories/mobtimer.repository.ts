@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MobMember } from '../../domain/mobbing/mob-member.vo';
-import { MobTime } from '../../domain/mobbing/mob-time.vo';
+import { MobTime, MobTimeProps } from '../../domain/mobbing/mob-time.vo';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,13 @@ export class MobtimerRepository {
   constructor() {}
   readonly storagePrefix = 'kasaharu/mobtimer';
 
-  saveTime(minutes: MobTime) {
+  saveTime(minutes: MobTimeProps) {
     localStorage.setItem(`${this.storagePrefix}/minutes`, JSON.stringify(minutes));
   }
 
-  getTime(): MobTime {
+  getTime(): MobTimeProps {
     const minutes = localStorage.getItem(`${this.storagePrefix}/minutes`);
-    return minutes ? (JSON.parse(minutes) as MobTime) : MobTime.create(MobTime.minimumTime);
+    return minutes ? (JSON.parse(minutes) as MobTimeProps) : { count: MobTime.minimumTime };
   }
 
   saveMember(member: MobMember) {

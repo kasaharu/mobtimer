@@ -21,7 +21,7 @@ export class MobtimerUsecase {
 
   changeTime(minutes: number) {
     const mobTime = MobTime.create(minutes);
-    this.store$.dispatch(actions.saveMobTime({ mobTime }));
+    this.store$.dispatch(actions.saveMobTime({ mobTime: { ...mobTime } }));
     this.repository.saveTime(mobTime);
   }
 
