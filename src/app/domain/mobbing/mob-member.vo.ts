@@ -1,6 +1,6 @@
 import { MobMemberService } from './mob-member.service';
 
-interface MobMemberProps {
+export interface MobMemberProps {
   name: string;
 }
 

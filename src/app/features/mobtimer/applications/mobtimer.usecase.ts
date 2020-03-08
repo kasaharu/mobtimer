@@ -27,8 +27,8 @@ export class MobtimerUsecase {
 
   addMember(name: string) {
     const mobMember = MobMember.create(name);
-    this.store$.dispatch(actions.saveMobMember({ mobMember }));
-    this.repository.saveMember(mobMember);
+    this.store$.dispatch(actions.saveMobMember({ mobMember: { ...mobMember } }));
+    this.repository.saveMember({ ...mobMember });
   }
 
   deleteMember(name: string) {

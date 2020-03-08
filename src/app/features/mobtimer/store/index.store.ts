@@ -1,12 +1,12 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
-import { MobMember } from '../../../domain/mobbing/mob-member.vo';
+import { MobMemberProps } from '../../../domain/mobbing/mob-member.vo';
 import { MobTimeProps } from '../../../domain/mobbing/mob-time.vo';
 import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
 
 // NOTE: State
 export interface State {
   mobTime: MobTimeProps;
-  mobMembers: MobMember[];
+  mobMembers: MobMemberProps[];
   isMobbing: boolean;
   countdownSeconds: number;
 }
@@ -19,9 +19,9 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-const setMobbing = createAction('[MobTimer] set mobbing', props<{ mobTime: MobTimeProps; mobMembers: MobMember[] }>());
+const setMobbing = createAction('[MobTimer] set mobbing', props<{ mobTime: MobTimeProps; mobMembers: MobMemberProps[] }>());
 const saveMobTime = createAction('[MobTimer] save mobTime', props<{ mobTime: MobTimeProps }>());
-const saveMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMember }>());
+const saveMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMemberProps }>());
 const deleteMobMember = createAction('[MobTimer] delete mobMember', props<{ memberName: string }>());
 const startMobbing = createAction('[MobTimer] start mobbing');
 const stopMobbing = createAction('[MobTimer] stop mobbing');

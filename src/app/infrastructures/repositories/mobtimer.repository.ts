@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MobMember } from '../../domain/mobbing/mob-member.vo';
+import { MobMemberProps } from '../../domain/mobbing/mob-member.vo';
 import { MobTime, MobTimeProps } from '../../domain/mobbing/mob-time.vo';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class MobtimerRepository {
     return minutes ? (JSON.parse(minutes) as MobTimeProps) : { count: MobTime.minimumTime };
   }
 
-  saveMember(member: MobMember) {
+  saveMember(member: MobMemberProps) {
     const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
     const savedMembers = savedMembersString ? JSON.parse(savedMembersString) : [];
     const newMembers = [member].concat(savedMembers);
@@ -28,14 +28,14 @@ export class MobtimerRepository {
 
   deleteMember(targetMemberName: string) {
     const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
-    const savedMembers: MobMember[] = savedMembersString ? JSON.parse(savedMembersString) : [];
+    const savedMembers: MobMemberProps[] = savedMembersString ? JSON.parse(savedMembersString) : [];
     const newMembers = savedMembers.filter((member) => member.name !== targetMemberName);
 
     localStorage.setItem(`${this.storagePrefix}/members`, JSON.stringify(newMembers));
   }
 
-  getMembers(): MobMember[] {
+  getMembers(): MobMemberProps[] {
     const savedMembersString = localStorage.getItem(`${this.storagePrefix}/members`);
-    return savedMembersString ? (JSON.parse(savedMembersString) as MobMember[]) : [];
+    return savedMembersString ? (JSON.parse(savedMembersString) as MobMemberProps[]) : [];
   }
 }
