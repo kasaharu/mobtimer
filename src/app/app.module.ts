@@ -13,7 +13,17 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+          strictStateSerializability: true,
+          strictActionSerializability: true,
+        },
+      },
+    ),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     AppRoutingModule,
     SharedModule,
