@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { MobMember } from '../../../domain/mobbing/mob-member.vo';
 import { MobTime } from '../../../domain/mobbing/mob-time.vo';
+import { MobTimeRepository } from '../../../infrastructures/repositories/mob-time.repository';
 import { MobtimerRepository } from '../../../infrastructures/repositories/mobtimer.repository';
 import { actions, selectStore } from '../store/index.store';
 
@@ -10,11 +11,11 @@ import { actions, selectStore } from '../store/index.store';
   providedIn: 'root',
 })
 export class MobtimerUsecase {
-  constructor(private store$: Store<{}>, private repository: MobtimerRepository) {}
+  constructor(private store$: Store<{}>, private repository: MobtimerRepository, private mobTimeRepo: MobTimeRepository) {}
   intervalId: number | null = null;
 
   initialize() {
-    const mobTime = this.repository.getTime();
+    const mobTime = this.mobTimeRepo.getTime();
     const mobMembers = this.repository.getMembers();
     this.store$.dispatch(actions.setMobbing({ mobTime, mobMembers }));
   }
@@ -22,7 +23,7 @@ export class MobtimerUsecase {
   changeTime(minutes: number) {
     const mobTime = MobTime.create(minutes);
     this.store$.dispatch(actions.saveMobTime({ mobTime: { ...mobTime } }));
-    this.repository.saveTime(mobTime);
+    this.mobTimeRepo.saveTime(mobTime);
   }
 
   addMember(name: string) {
