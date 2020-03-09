@@ -3,20 +3,20 @@ import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { MobMember } from '../../../domain/mobbing/mob-member.vo';
 import { MobTime } from '../../../domain/mobbing/mob-time.vo';
+import { MobMemberRepository } from '../../../infrastructures/repositories/mob-member.repository';
 import { MobTimeRepository } from '../../../infrastructures/repositories/mob-time.repository';
-import { MobtimerRepository } from '../../../infrastructures/repositories/mobtimer.repository';
 import { actions, selectStore } from '../store/index.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MobtimerUsecase {
-  constructor(private store$: Store<{}>, private repository: MobtimerRepository, private mobTimeRepo: MobTimeRepository) {}
+  constructor(private store$: Store<{}>, private mobTimeRepo: MobTimeRepository, private mobMemberRepo: MobMemberRepository) {}
   intervalId: number | null = null;
 
   initialize() {
     const mobTime = this.mobTimeRepo.getTime();
-    const mobMembers = this.repository.getMembers();
+    const mobMembers = this.mobMemberRepo.getMembers();
     this.store$.dispatch(actions.setMobbing({ mobTime, mobMembers }));
   }
 
@@ -29,12 +29,12 @@ export class MobtimerUsecase {
   addMember(name: string) {
     const mobMember = MobMember.create(name);
     this.store$.dispatch(actions.saveMobMember({ mobMember: { ...mobMember } }));
-    this.repository.saveMember({ ...mobMember });
+    this.mobMemberRepo.saveMember({ ...mobMember });
   }
 
   deleteMember(name: string) {
     this.store$.dispatch(actions.deleteMobMember({ memberName: name }));
-    this.repository.deleteMember(name);
+    this.mobMemberRepo.deleteMember(name);
   }
 
   startMobbing() {
