@@ -33,7 +33,7 @@ export class MobtimerComponent implements OnInit {
   }
 
   addMember(name: string) {
-    this.usecase.addMember(name);
+    this.usecase.createMember(name);
   }
 
   deleteMember(name: string) {

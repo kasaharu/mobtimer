@@ -9,7 +9,7 @@ export class MobMemberRepository {
   constructor() {}
   readonly storageKey = `${storagePrefix}/members`;
 
-  saveMember(member: MobMemberProps) {
+  createMemeber(member: MobMemberProps) {
     const savedMembers = this.getMembers();
     const newMembers = [member].concat(savedMembers);
 

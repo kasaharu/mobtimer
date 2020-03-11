@@ -22,14 +22,14 @@ export class MobtimerUsecase {
 
   changeTime(minutes: number) {
     const mobTime = MobTime.create(minutes);
-    this.store$.dispatch(actions.saveMobTime({ mobTime: { ...mobTime } }));
+    this.store$.dispatch(actions.changeMobTime({ mobTime: { ...mobTime } }));
     this.mobTimeRepo.saveTime(mobTime);
   }
 
-  addMember(name: string) {
+  createMember(name: string) {
     const mobMember = MobMember.create(name);
-    this.store$.dispatch(actions.saveMobMember({ mobMember: { ...mobMember } }));
-    this.mobMemberRepo.saveMember({ ...mobMember });
+    this.store$.dispatch(actions.createMobMember({ mobMember: { ...mobMember } }));
+    this.mobMemberRepo.createMemeber({ ...mobMember });
   }
 
   deleteMember(name: string) {
