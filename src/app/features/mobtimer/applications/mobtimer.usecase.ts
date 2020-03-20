@@ -41,6 +41,10 @@ export class MobtimerUsecase {
     this.store$.dispatch(actions.startMobbing());
   }
 
+  stopMobbing() {
+    this.store$.dispatch(actions.stopMobbing());
+  }
+
   async startCountdown() {
     if (this.intervalId !== null) {
       return;
