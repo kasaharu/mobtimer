@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { MobbingStateType } from '../../../domain/mobbing/mobbing';
 import { selectStore } from '../store/index.store';
 
 @Injectable({
@@ -11,7 +12,8 @@ export class MobtimerQuery {
     return state.mobTime.count;
   });
   readonly mobMembers$ = selectStore(this.store$, (state) => state.mobMembers.map((member) => member.name));
-  readonly isMobbing$ = selectStore(this.store$, (state) => state.isMobbing);
+  readonly isMobbing$ = selectStore(this.store$, (state) => state.mobbingState === MobbingStateType.IsMobbing);
+  readonly readyMobbing$ = selectStore(this.store$, (state) => state.mobbingState === MobbingStateType.IsReady);
   readonly countdownValue$ = selectStore(this.store$, (state) => {
     // NOTE: countdownSeconds を 分/秒 に分解:
     if (state.countdownSeconds === 0) {
@@ -23,5 +25,4 @@ export class MobtimerQuery {
 
     return { minutes, seconds };
   });
-  readonly readyMobbing$ = selectStore(this.store$, (state) => state.mobTime.count > 0 && state.mobMembers.length > 0);
 }

@@ -8,7 +8,6 @@ import { createFeatureStoreSelector } from '../../../shared/store/helpers/select
 export interface State {
   mobTime: MobTimeProps;
   mobMembers: MobMemberProps[];
-  isMobbing: boolean;
   mobbingState: MobbingStateType;
   countdownSeconds: number;
 }
@@ -16,7 +15,6 @@ export interface State {
 export const initialState: State = {
   mobTime: { count: 1 },
   mobMembers: [],
-  isMobbing: false,
   mobbingState: initialMobbingState,
   countdownSeconds: 0,
 };
@@ -56,8 +54,8 @@ const mobTimerReducer = createReducer(
       state.mobMembers.filter((member) => member.name !== memberName),
     ),
   })),
-  on(startMobbing, (state) => ({ ...state, isMobbing: true, mobbingState: MobbingStateType.IsMobbing })),
-  on(stopMobbing, (state) => ({ ...state, isMobbing: false, mobbingState: MobbingStateType.Paused })),
+  on(startMobbing, (state) => ({ ...state, mobbingState: MobbingStateType.IsMobbing })),
+  on(stopMobbing, (state) => ({ ...state, mobbingState: MobbingStateType.Paused })),
   on(setCountdownSeconds, (state, { countdownSeconds }) => ({ ...state, countdownSeconds })),
 );
 
