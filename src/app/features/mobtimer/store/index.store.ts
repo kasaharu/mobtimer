@@ -1,7 +1,7 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
 import { MobMemberProps } from '../../../domain/mobbing/mob-member.vo';
 import { MobTimeProps } from '../../../domain/mobbing/mob-time.vo';
-import { initialMobbingState, MobbingState } from '../../../domain/mobbing/mobbing';
+import { initialMobbingState, isReady, MobbingStateType } from '../../../domain/mobbing/mobbing';
 import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
 
 // NOTE: State
@@ -9,7 +9,7 @@ export interface State {
   mobTime: MobTimeProps;
   mobMembers: MobMemberProps[];
   isMobbing: boolean;
-  mobbingState: MobbingState;
+  mobbingState: MobbingStateType;
   countdownSeconds: number;
 }
 
@@ -36,15 +36,28 @@ const actionsUnion = union(actions);
 // NOTE: Reducer
 const mobTimerReducer = createReducer(
   initialState,
-  on(setMobbing, (state, { mobTime, mobMembers }) => ({ ...state, mobTime, mobMembers })),
-  on(changeMobTime, (state, { mobTime }) => ({ ...state, mobTime })),
-  on(createMobMember, (state, { mobMember }) => ({ ...state, mobMembers: [...state.mobMembers, mobMember] })),
+  on(setMobbing, (state, { mobTime, mobMembers }) => ({
+    ...state,
+    mobTime,
+    mobMembers,
+    mobbingState: changeMobbingState(mobTime, mobMembers),
+  })),
+  on(changeMobTime, (state, { mobTime }) => ({ ...state, mobTime, mobbingState: changeMobbingState(mobTime, state.mobMembers) })),
+  on(createMobMember, (state, { mobMember }) => ({
+    ...state,
+    mobMembers: [...state.mobMembers, mobMember],
+    mobbingState: changeMobbingState(state.mobTime, [...state.mobMembers, mobMember]),
+  })),
   on(deleteMobMember, (state, { memberName }) => ({
     ...state,
     mobMembers: state.mobMembers.filter((member) => member.name !== memberName),
+    mobbingState: changeMobbingState(
+      state.mobTime,
+      state.mobMembers.filter((member) => member.name !== memberName),
+    ),
   })),
-  on(startMobbing, (state) => ({ ...state, isMobbing: true })),
-  on(stopMobbing, (state) => ({ ...state, isMobbing: false })),
+  on(startMobbing, (state) => ({ ...state, isMobbing: true, mobbingState: MobbingStateType.IsMobbing })),
+  on(stopMobbing, (state) => ({ ...state, isMobbing: false, mobbingState: MobbingStateType.Paused })),
   on(setCountdownSeconds, (state, { countdownSeconds }) => ({ ...state, countdownSeconds })),
 );
 
@@ -55,3 +68,7 @@ export default function reducer(state: State, action: typeof actionsUnion): Stat
 // NOTE: Selectors
 export const featureName = 'mobTimer';
 export const selectStore = createFeatureStoreSelector<State>(featureName);
+
+const changeMobbingState = (time: MobTimeProps, members: MobMemberProps[]): MobbingStateType => {
+  return isReady(time, members) ? MobbingStateType.IsReady : MobbingStateType.NotReady;
+};
