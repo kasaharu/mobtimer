@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MobtimerQuery } from '../../../applications/mobtimer.query';
 import { MobtimerUsecase } from '../../../applications/mobtimer.usecase';
+import { CountdownUsecase } from '../../../applications/countdown.usecase';
 
 @Component({
   selector: 'app-mobtimer',
@@ -9,7 +10,7 @@ import { MobtimerUsecase } from '../../../applications/mobtimer.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobtimerComponent implements OnInit {
-  constructor(private usecase: MobtimerUsecase, private query: MobtimerQuery) {}
+  constructor(private mobtimerUsecase: MobtimerUsecase, private countdownUsecase: CountdownUsecase, private query: MobtimerQuery) {}
 
   readonly mobTime$ = this.query.mobTime$;
   readonly mobMembers$ = this.query.mobMembers$;
@@ -18,33 +19,33 @@ export class MobtimerComponent implements OnInit {
   readonly readyMobbing$ = this.query.readyMobbing$;
 
   ngOnInit(): void {
-    this.usecase.initialize();
+    this.mobtimerUsecase.initialize();
     this.isMobbing$.subscribe((isMobbing) => {
       if (isMobbing) {
-        this.usecase.startCountdown();
+        this.countdownUsecase.startCountdown();
       } else {
-        this.usecase.stopCountDown();
+        this.countdownUsecase.stopCountDown();
       }
     });
   }
 
   changeTime(time: number) {
-    this.usecase.changeTime(time);
+    this.mobtimerUsecase.changeTime(time);
   }
 
   addMember(name: string) {
-    this.usecase.createMember(name);
+    this.mobtimerUsecase.createMember(name);
   }
 
   deleteMember(name: string) {
-    this.usecase.deleteMember(name);
+    this.mobtimerUsecase.deleteMember(name);
   }
 
   startMobbing() {
-    this.usecase.startMobbing();
+    this.mobtimerUsecase.startMobbing();
   }
 
   stopMobbing() {
-    this.usecase.stopMobbing();
+    this.mobtimerUsecase.stopMobbing();
   }
 }
