@@ -1,3 +1,8 @@
-export type MobbingState = 'notReady' | 'isReady' | 'isMobbing' | 'paused';
+export const enum MobbingStateType {
+  NotReady = 'noteReady',
+  IsReady = 'isReady',
+  IsMobbing = 'isMobbing',
+  Paused = 'paused',
+}
 
-export const initialMobbingState = 'notReady';
+export const initialMobbingState = MobbingStateType.NotReady;
