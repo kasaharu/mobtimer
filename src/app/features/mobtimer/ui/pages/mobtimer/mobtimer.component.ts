@@ -14,10 +14,9 @@ export class MobtimerComponent implements OnInit {
 
   readonly mobTime$ = this.query.mobTime$;
   readonly mobMembers$ = this.query.mobMembers$;
-  readonly mobbingState$ = this.query.mobbingState$;
   readonly isMobbing$ = this.query.isMobbing$;
-  readonly countdownValue$ = this.query.countdownValue$;
   readonly readyMobbing$ = this.query.readyMobbing$;
+  readonly countdownValue$ = this.query.countdownValue$;
 
   ngOnInit(): void {
     this.mobtimerUsecase.initialize();
