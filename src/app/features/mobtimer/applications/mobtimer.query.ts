@@ -14,6 +14,7 @@ export class MobtimerQuery {
   readonly mobMembers$ = selectStore(this.store$, (state) => state.mobMembers.map((member) => member.name));
   readonly isMobbing$ = selectStore(this.store$, (state) => state.mobbingState === MobbingStateType.IsMobbing);
   readonly readyMobbing$ = selectStore(this.store$, (state) => state.mobbingState === MobbingStateType.IsReady);
+  readonly pausedMobbing$ = selectStore(this.store$, (state) => state.mobbingState === MobbingStateType.Paused);
 
   readonly countdownValue$ = selectStore(this.store$, (state) => {
     // NOTE: countdownSeconds を 分/秒 に分解:

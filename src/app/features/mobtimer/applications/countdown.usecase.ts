@@ -18,14 +18,19 @@ export class CountdownUsecase {
     const mobTimes = await selectStore(this.store$, (state) => state.mobTime.count)
       .pipe(take(1))
       .toPromise();
-    let seconds = mobTimes * 60;
+    const initialSeconds = mobTimes * 60;
+    this.countdown(initialSeconds);
+  }
 
-    this.intervalId = window.setInterval(() => {
-      this.store$.dispatch(actions.setCountdownSeconds({ countdownSeconds: seconds-- }));
-      if (seconds < 0) {
-        this.store$.dispatch(actions.stopMobbing());
-      }
-    }, 1000);
+  async resumeCountdown() {
+    if (this.intervalId !== null) {
+      return;
+    }
+
+    const countdownSeconds = await selectStore(this.store$, (state) => state.countdownSeconds)
+      .pipe(take(1))
+      .toPromise();
+    this.countdown(countdownSeconds);
   }
 
   stopCountDown() {
@@ -34,5 +39,15 @@ export class CountdownUsecase {
     }
 
     this.intervalId = null;
+  }
+
+  private countdown(initialSeconds: number) {
+    let seconds = initialSeconds;
+    this.intervalId = window.setInterval(() => {
+      this.store$.dispatch(actions.setCountdownSeconds({ countdownSeconds: seconds-- }));
+      if (seconds < 0) {
+        this.store$.dispatch(actions.pauseMobbing());
+      }
+    }, 1000);
   }
 }
