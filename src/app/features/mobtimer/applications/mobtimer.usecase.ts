@@ -40,7 +40,7 @@ export class MobtimerUsecase {
     this.store$.dispatch(actions.startMobbing());
   }
 
-  stopMobbing() {
-    this.store$.dispatch(actions.stopMobbing());
+  pauseMobbing() {
+    this.store$.dispatch(actions.pauseMobbing());
   }
 }

@@ -25,10 +25,10 @@ const changeMobTime = createAction('[MobTimer] save mobTime', props<{ mobTime: M
 const createMobMember = createAction('[MobTimer] save mobMember', props<{ mobMember: MobMemberProps }>());
 const deleteMobMember = createAction('[MobTimer] delete mobMember', props<{ memberName: string }>());
 const startMobbing = createAction('[MobTimer] start mobbing');
-const stopMobbing = createAction('[MobTimer] stop mobbing');
+const pauseMobbing = createAction('[MobTimer] stop mobbing');
 const setCountdownSeconds = createAction('[MobTimer] set countdown seconds', props<{ countdownSeconds: number }>());
 
-export const actions = { setMobbing, changeMobTime, createMobMember, deleteMobMember, startMobbing, stopMobbing, setCountdownSeconds };
+export const actions = { setMobbing, changeMobTime, createMobMember, deleteMobMember, startMobbing, pauseMobbing, setCountdownSeconds };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
@@ -55,7 +55,7 @@ const mobTimerReducer = createReducer(
     ),
   })),
   on(startMobbing, (state) => ({ ...state, mobbingState: MobbingStateType.IsMobbing })),
-  on(stopMobbing, (state) => ({ ...state, mobbingState: MobbingStateType.Paused })),
+  on(pauseMobbing, (state) => ({ ...state, mobbingState: MobbingStateType.Paused })),
   on(setCountdownSeconds, (state, { countdownSeconds }) => ({ ...state, countdownSeconds })),
 );
 

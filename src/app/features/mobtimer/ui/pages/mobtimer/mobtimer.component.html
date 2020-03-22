@@ -15,7 +15,7 @@
   <button class="start-button" [disabled]="!(readyMobbing$ | async)" (click)="startMobbing()">
     Start Mobbing
   </button>
-  <button class="stop-button" [disabled]="!(isMobbing$ | async)" (click)="stopMobbing()">
-    Stop Mobbing
+  <button class="stop-button" [disabled]="!(isMobbing$ | async)" (click)="pauseMobbing()">
+    Pause Mobbing
   </button>
 </div>
