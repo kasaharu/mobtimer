@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { CountdownUsecase } from '../../../applications/countdown.usecase';
 import { MobtimerQuery } from '../../../applications/mobtimer.query';
 import { MobtimerUsecase } from '../../../applications/mobtimer.usecase';
-import { CountdownUsecase } from '../../../applications/countdown.usecase';
 
 @Component({
   selector: 'app-mobtimer',
@@ -21,13 +21,6 @@ export class MobtimerComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobtimerUsecase.initialize();
-    this.isMobbing$.subscribe((isMobbing) => {
-      if (isMobbing) {
-        this.countdownUsecase.startCountdown();
-      } else {
-        this.countdownUsecase.stopCountDown();
-      }
-    });
   }
 
   changeTime(time: number) {
@@ -44,10 +37,12 @@ export class MobtimerComponent implements OnInit {
 
   startMobbing() {
     this.mobtimerUsecase.startMobbing();
+    this.countdownUsecase.startCountdown();
   }
 
   pauseMobbing() {
     this.mobtimerUsecase.pauseMobbing();
+    this.countdownUsecase.pauseCountDown();
   }
 
   resumeMobbing() {

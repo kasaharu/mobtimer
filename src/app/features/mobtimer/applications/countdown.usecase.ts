@@ -27,10 +27,19 @@ export class CountdownUsecase {
       return;
     }
 
+    this.store$.dispatch(actions.startMobbing());
     const countdownSeconds = await selectStore(this.store$, (state) => state.countdownSeconds)
       .pipe(take(1))
       .toPromise();
     this.countdown(countdownSeconds);
+  }
+
+  pauseCountDown() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+
+    this.intervalId = null;
   }
 
   stopCountDown() {
@@ -43,10 +52,12 @@ export class CountdownUsecase {
 
   private countdown(initialSeconds: number) {
     let seconds = initialSeconds;
+    this.store$.dispatch(actions.setCountdownSeconds({ countdownSeconds: seconds-- }));
     this.intervalId = window.setInterval(() => {
       this.store$.dispatch(actions.setCountdownSeconds({ countdownSeconds: seconds-- }));
       if (seconds < 0) {
-        this.store$.dispatch(actions.pauseMobbing());
+        this.store$.dispatch(actions.stopMobbing());
+        this.stopCountDown();
       }
     }, 1000);
   }
