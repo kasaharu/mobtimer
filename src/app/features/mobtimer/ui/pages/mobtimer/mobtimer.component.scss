@@ -1,3 +1,13 @@
+.counter {
+  font-size: 32px;
+}
+
+.button {
+  width: 300px;
+  font-size: 24px;
+  border-radius: 4px;
+  outline: none;
+}
 .mob-timer {
   display: flex;
   width: 100%;
@@ -17,13 +27,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.start-button,
-.stop-button,
-.resume-button {
-  width: 300px;
-  font-size: 24px;
-  border-radius: 4px;
-  outline: none;
 }
