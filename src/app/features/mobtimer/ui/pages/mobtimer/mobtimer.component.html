@@ -9,11 +9,5 @@
 </div>
 
 <div class="mob-timer">
-  <app-timer [mobTime]="mobTime$ | async" (changeTime)="changeTime($event)" class="mob-timer-item-timer"></app-timer>
-  <app-members
-    [members]="mobMembers$ | async"
-    (addMember)="addMember($event)"
-    (deleteMember)="deleteMember($event)"
-    class="mob-timer-item-members"
-  ></app-members>
+  <app-setting></app-setting>
 </div>

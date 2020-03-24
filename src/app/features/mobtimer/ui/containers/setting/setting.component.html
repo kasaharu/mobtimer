@@ -1,1 +1,2 @@
-<p>setting works!</p>
+<app-timer [mobTime]="mobTime$ | async" (changeTime)="changeTime($event)"></app-timer>
+<app-members [members]="mobMembers$ | async" (addMember)="addMember($event)" (deleteMember)="deleteMember($event)"></app-members>

@@ -12,8 +12,6 @@ import { MobtimerUsecase } from '../../../applications/mobtimer.usecase';
 export class MobtimerComponent implements OnInit {
   constructor(private mobtimerUsecase: MobtimerUsecase, private countdownUsecase: CountdownUsecase, private query: MobtimerQuery) {}
 
-  readonly mobTime$ = this.query.mobTime$;
-  readonly mobMembers$ = this.query.mobMembers$;
   readonly isMobbing$ = this.query.isMobbing$;
   readonly readyMobbing$ = this.query.readyMobbing$;
   readonly pausedMobbing$ = this.query.pausedMobbing$;
@@ -21,18 +19,6 @@ export class MobtimerComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobtimerUsecase.initialize();
-  }
-
-  changeTime(time: number) {
-    this.mobtimerUsecase.changeTime(time);
-  }
-
-  addMember(name: string) {
-    this.mobtimerUsecase.createMember(name);
-  }
-
-  deleteMember(name: string) {
-    this.mobtimerUsecase.deleteMember(name);
   }
 
   startMobbing() {
