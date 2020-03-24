@@ -7,10 +7,10 @@ import { default as reducer, featureName } from './store/index.store';
 import { SettingComponent } from './ui/containers/setting/setting.component';
 import { MobtimerComponent } from './ui/pages/mobtimer/mobtimer.component';
 import { MembersComponent } from './ui/presenters/members/members.component';
-import { TimerComponent } from './ui/presenters/timer/timer.component';
+import { TimeComponent } from './ui/presenters/time/time.component';
 
 @NgModule({
-  declarations: [MobtimerComponent, TimerComponent, MembersComponent, SettingComponent],
+  declarations: [MobtimerComponent, TimeComponent, MembersComponent, SettingComponent],
   imports: [CommonModule, ReactiveFormsModule, StoreModule.forFeature(featureName, reducer), SharedModule],
 })
 export class MobtimerModule {}

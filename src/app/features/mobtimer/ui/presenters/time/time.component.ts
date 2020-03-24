@@ -4,11 +4,11 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss'],
+  templateUrl: './time.component.html',
+  styleUrls: ['./time.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimerComponent implements OnInit {
+export class TimeComponent implements OnInit {
   constructor() {}
   @Input()
   mobTime!: number;
