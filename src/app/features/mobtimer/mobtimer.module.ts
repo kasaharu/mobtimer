@@ -4,12 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../../shared/shared.module';
 import { default as reducer, featureName } from './store/index.store';
+import { SettingComponent } from './ui/containers/setting/setting.component';
 import { MobtimerComponent } from './ui/pages/mobtimer/mobtimer.component';
 import { MembersComponent } from './ui/presenters/members/members.component';
 import { TimerComponent } from './ui/presenters/timer/timer.component';
 
 @NgModule({
-  declarations: [MobtimerComponent, TimerComponent, MembersComponent],
+  declarations: [MobtimerComponent, TimerComponent, MembersComponent, SettingComponent],
   imports: [CommonModule, ReactiveFormsModule, StoreModule.forFeature(featureName, reducer), SharedModule],
 })
 export class MobtimerModule {}
