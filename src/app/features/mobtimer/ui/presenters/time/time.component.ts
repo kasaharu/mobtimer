@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-timer',
+  selector: 'app-time',
   templateUrl: './time.component.html',
   styleUrls: ['./time.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
