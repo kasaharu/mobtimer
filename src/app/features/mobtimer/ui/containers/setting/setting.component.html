@@ -1,2 +1,7 @@
-<app-time [mobTime]="mobTime$ | async" (changeTime)="changeTime($event)"></app-time>
-<app-members [members]="mobMembers$ | async" (addMember)="addMember($event)" (deleteMember)="deleteMember($event)"></app-members>
+<app-time class="setting-item" [mobTime]="mobTime$ | async" (changeTime)="changeTime($event)"></app-time>
+<app-members
+  class="setting-item"
+  [members]="mobMembers$ | async"
+  (addMember)="addMember($event)"
+  (deleteMember)="deleteMember($event)"
+></app-members>
