@@ -1,1 +1,9 @@
-<p>timer works!</p>
+<div class="mobbing">
+  <div class="counter" *ngIf="countdownValue$ | async as time; else defaultCount">
+    <div>{{ time | displayingTime }}</div>
+  </div>
+  <ng-template class="counter" #defaultCount>00:00</ng-template>
+  <button class="button" *ngIf="readyMobbing$ | async" (click)="startMobbing()">Start</button>
+  <button class="button" *ngIf="isMobbing$ | async" (click)="pauseMobbing()">Pause</button>
+  <button class="button" *ngIf="pausedMobbing$ | async" (click)="resumeMobbing()">Resume</button>
+</div>
