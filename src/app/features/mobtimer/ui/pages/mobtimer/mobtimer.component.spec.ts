@@ -8,9 +8,8 @@ describe('MobtimerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MobtimerComponent ],
-    })
-    .compileComponents();
+      declarations: [MobtimerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
