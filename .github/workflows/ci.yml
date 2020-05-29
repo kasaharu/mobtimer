@@ -50,25 +50,25 @@ jobs:
         env:
           CI: true
 
-      - name: build ng-basis
+      - name: build mobtimer
         run: |
-          yarn build --prod ng-basis
+          yarn build --prod mobtimer
         env:
           CI: true
 
-      - name: unit test ng-basis
+      - name: unit test mobtimer
         run: |
-          yarn test:ci ng-basis
+          yarn test:ci mobtimer
         env:
           CI: true
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v1
         with:
-          name: code-coverage-report-for-ng-basis
-          path: coverage/ng-basis
-      #       - name: e2e test ng-basis
+          name: code-coverage-report-for-mobtimer
+          path: coverage/mobtimer
+      #       - name: e2e test mobtimer
       #         run: |
-      #           yarn e2e:ci ng-basis
+      #           yarn e2e:ci mobtimer
       #         env:
       #           CI: true
