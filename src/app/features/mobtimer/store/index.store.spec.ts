@@ -1,11 +1,11 @@
-import reducer, { actions, State } from './index.store';
+import { MobbingStateType } from '../../../domain/mobbing/mobbing';
+import reducer, { actions, initialState, State } from './index.store';
 
 describe('index reducer', () => {
   it('action type : saveIndex', () => {
-    const state: State = { index: null };
-    const updatedState = null;
-    const result = reducer(state, actions.saveIndex({ index: updatedState }));
+    const state: State = initialState;
+    const result = reducer(state, actions.startMobbing());
 
-    expect(result).toEqual({ index: updatedState });
+    expect(result).toEqual({ ...state, mobbingState: MobbingStateType.IsMobbing });
   });
 });

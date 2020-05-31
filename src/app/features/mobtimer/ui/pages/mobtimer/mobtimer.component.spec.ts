@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MobtimerUsecase } from '../../../applications/mobtimer.usecase';
 import { MobtimerComponent } from './mobtimer.component';
+
+class MockMobtimerUsecase {
+  initialize() {}
+}
 
 describe('MobtimerComponent', () => {
   let component: MobtimerComponent;
@@ -9,6 +13,7 @@ describe('MobtimerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MobtimerComponent],
+      providers: [{ provide: MobtimerUsecase, useClass: MockMobtimerUsecase }],
     }).compileComponents();
   }));
 
