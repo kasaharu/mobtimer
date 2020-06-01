@@ -2,7 +2,7 @@ import { MobMemberProps } from './mob-member.vo';
 import { MobTimeProps } from './mob-time.vo';
 
 export const enum MobbingStateType {
-  NotReady = 'noteReady',
+  NotReady = 'notReady',
   IsReady = 'isReady',
   IsMobbing = 'isMobbing',
   Paused = 'paused',
